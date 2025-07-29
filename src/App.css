@@ -1,0 +1,219 @@
+/* Base Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f8fafc, #e0f2fe);
+  min-height: 100vh;
+}
+
+/* Title */
+h2 {
+  text-align: center;
+  color: #1d4ed8;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+
+/* Form */
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, button {
+  padding: 12px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+/* Logout Button */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: #334155;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  background: #1e293b;
+}
+
+/* Task List */
+ul {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  background: #ffffff;
+  margin: 12px 0;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+}
+
+li strong {
+  font-size: 18px;
+  color: #0f172a;
+  flex: 1;
+}
+
+/* Task Status Colors */
+li.done {
+  background-color: #dcfce7;
+  border-left: 6px solid #22c55e;
+}
+
+li.pending {
+  background-color: #fef9c3;
+  border-left: 6px solid #f59e0b;
+}
+
+/* Due Date */
+li span {
+  font-size: 14px;
+  color: #64748b;
+  margin-right: 15px;
+}
+
+/* Buttons inside task */
+li button {
+  background-color: #f43f5e;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+li button:hover {
+  background-color: #be123c;
+}
+
+li button:first-of-type {
+  background-color: #10b981;
+  margin-right: 8px;
+}
+
+li button:first-of-type:hover {
+  background-color: #059669;
+}
+li div p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form, ul {
+    margin: 15px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logout-button {
+    position: static;
+    display: block;
+    margin: 10px auto;
+  }
+}
+.emoji {
+  font-size: 60px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.bounce {
+  animation: bounce 1s infinite;
+}
+
+.wave {
+  animation: wave 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #d3d3d3;
+}
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  font-size: 16px;
+}
+.auth-container .error {
+  color: red;
+  text-align: center;
+}
