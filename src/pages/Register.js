@@ -8,11 +8,13 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
@@ -45,3 +47,4 @@ const Register = () => {
 };
 
 export default Register;
+
