@@ -9,13 +9,14 @@ const Dashboard = () => {
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [error, setError] = useState('');
-  const [openTaskId, setOpenTaskId] = useState(null); // for description toggle
+  const [openTaskId, setOpenTaskId] = useState(null);
 
   const token = localStorage.getItem('token');
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks', {
+      const res = await axios.get(`${BASE_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTasks(res.data);
@@ -27,7 +28,7 @@ const Dashboard = () => {
   const handleAddTask = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/tasks', {
+      await axios.post(`${BASE_URL}/tasks`, {
         title,
         description,
         dueDate
@@ -46,7 +47,7 @@ const Dashboard = () => {
   const handleDelete = async (id, e) => {
     e.stopPropagation();
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+      await axios.delete(`${BASE_URL}/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTasks();
@@ -58,7 +59,7 @@ const Dashboard = () => {
   const markDone = async (id, e) => {
     e.stopPropagation();
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${id}`, { status: 'done' }, {
+      await axios.put(`${BASE_URL}/tasks/${id}`, { status: 'done' }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTasks();
@@ -73,7 +74,6 @@ const Dashboard = () => {
     } else {
       fetchTasks();
     }
-    // eslint-disable-next-line
   }, []);
 
   const logout = () => {
@@ -91,24 +91,9 @@ const Dashboard = () => {
       <button className="logout-button" onClick={logout}>Logout</button>
 
       <form onSubmit={handleAddTask}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <input
-          type="date"
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-        />
+        <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
         <button type="submit">Add Task</button>
       </form>
 
@@ -159,3 +144,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
