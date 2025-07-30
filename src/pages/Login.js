@@ -11,12 +11,13 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
 
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -26,20 +27,33 @@ const Login = () => {
         return;
       }
 
+      // Optionally store user info
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
 
       navigate('/dashboard');
     } catch (err) {
-      setError('Server error');
+      console.error('Login error:', err);
+      setError('Server error. Please try again later.');
     }
   };
 
   return (
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
       <button type="submit">Login</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
@@ -47,3 +61,4 @@ const Login = () => {
 };
 
 export default Login;
+
